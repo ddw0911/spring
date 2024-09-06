@@ -8,3 +8,22 @@
 
   -> DTO <-> VO 변환을 위해 ModelMapper 라이브러리 사용 (서비스 영역)
   -> 이용 시 대상 클래스의 생성자를 이용할 수 있도록 생성자 어노테이션 적용
+
+## log ( no more sout ) /w log4j2 흰색 글씨
+    -> log 레벨 설정 : 개발 시 로그 ( INFO 이하 ), 운영 시 로그 ( WARN 이상 )
+    ( 레벨 - FATAL, ERROR, WARN, INFO, DEBUG, TRACE 순으로 하위레벨일수록 많은 정보 표현 )
+
+## Todo application ver1.0 피드백
+  개선필요사항
+  1) 여러개의 컨트롤러 필요
+  2) 동일한 로직 반복처리
+  3) 예외처리
+  4) 반복된 메서드 호출
+    -> 스프링으로 해결가능
+
+## Cookie, Session, Filter, Listener ** 필수
+    http 특징 중
+       클라이언트의 상태를 유지하지 않는다 - stateless ( 응답하면 연결 끊음 )
+        -> 새로운 연결에 필요한 시간을 줄이기 위한 방법들 - 세션, 쿠키, 특정문자(토큰)
+            ex) 로그인 유지를 위한 모든기능 - 세션트래킹
+                Tomcat(WAS)가 운영하는 Session 저장소의 쿠키 /w session-timeout 프로퍼티 (지정된 시간을 초과하면 무효화)

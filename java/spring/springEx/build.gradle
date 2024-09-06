@@ -41,14 +41,14 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
     testCompileOnly 'org.projectlombok:lombok:1.18.30'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 
     implementation 'org.apache.logging.log4j:log4j-api:2.22.1'
     implementation 'org.apache.logging.log4j:log4j-core:2.22.1'
     implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.22.1'
     implementation 'jstl:jstl:1.2'
 
-
+    //테스트환경에서 @Log4j2를 사용하기 위한 라이브러리
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 

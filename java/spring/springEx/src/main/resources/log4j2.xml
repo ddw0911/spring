@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="INFO">
+
     <Appenders>
+        <!--    어떤 방식으로 기록할 지-->
         <!-- 콘솔 -->
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout charset="UTF-8" pattern="%d{hh:mm:ss} %5p [%c] %m%n"/>
