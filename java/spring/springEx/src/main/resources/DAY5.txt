@@ -1,0 +1,10 @@
+## JDBC 연동 /w HikariCP (Connection Pool)
+
+3 tier -> 프레젠테이션 - 비즈니스 - 데이터액세스 Layer : 웹 아키텍트
+
+## DTO vs VO
+  DTO 는 각 레이어에서 전달하고자 하는 데이터를 담는 객체 /w setter, getter, @Data
+  VO 는 단순히 데이터를 담는데 사용할 객체 /w getter
+
+  -> DTO <-> VO 변환을 위해 ModelMapper 라이브러리 사용 (서비스 영역)
+  -> 이용 시 대상 클래스의 생성자를 이용할 수 있도록 생성자 어노테이션 적용
