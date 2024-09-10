@@ -2,7 +2,6 @@ package com.ssg.springex.todo.util;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.modelmapper.spi.MatchingStrategy;
 
 public enum ModelMapperUtil {
   INSTANCE;
