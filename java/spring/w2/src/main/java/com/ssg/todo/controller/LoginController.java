@@ -31,14 +31,18 @@ public class LoginController extends HttpServlet {
 //    String mid = req.getParameter("mid");
 //    String mpw = req.getParameter("mpw"); // param 수집
 //    String login = mid + mpw;
-    MemberDTO dto = MemberDTO.builder()
-        .mid(req.getParameter("mid"))
-        .mpw(req.getParameter("mpw"))
-        .mname(req.getParameter("mname"))
-        .build();
 
-    HttpSession session = req.getSession();
-    session.setAttribute("login", memberService.login(dto));
-    resp.sendRedirect("/todo/list");
+    try {
+      MemberDTO dto = MemberDTO.builder()
+          .mid(req.getParameter("mid"))
+          .mpw(req.getParameter("mpw"))
+          .build();
+
+      HttpSession session = req.getSession();
+      session.setAttribute("login", memberService.login(dto));
+      resp.sendRedirect("/todo/list");
+    } catch (Exception e) {
+      resp.sendRedirect("/login?result=error");
+    }
   }
 }

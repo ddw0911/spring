@@ -19,13 +19,9 @@ public enum MemberService {
     this.modelMapper = ModelMapperUtil.INSTANCE.getModelMapper();
   }
 
-  public MemberDTO login(MemberDTO dto) {
-    try {
+  public MemberDTO login(MemberDTO dto) throws Exception {
+
       MemberVO vo = memberDAO.getWithPassword(dto.getMid(), dto.getMpw());
       return modelMapper.map(vo, MemberDTO.class);
-    } catch (Exception e) {
-      log.error(e.getMessage());
-      throw new RuntimeException("invalid member-info");
-    }
   }
 }
