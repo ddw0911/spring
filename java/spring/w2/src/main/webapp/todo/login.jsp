@@ -12,7 +12,7 @@
     <title>Login Page</title>
 </head>
 <body>
-    <c:if test="${param.result == 'error'}">
+    <c:if test="${param.result == 'error'}"> <%-- 파라미터에 result=error 면 실행 --%>
         <h1>로그인 에러</h1> </c:if>
     <form action="/login" method="post">
         <div><input type="text" name="mid"></div>

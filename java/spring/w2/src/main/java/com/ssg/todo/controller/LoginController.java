@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
       session.setAttribute("login", memberService.login(dto));
       resp.sendRedirect("/todo/list");
     } catch (Exception e) {
-      resp.sendRedirect("/login?result=error");
+      resp.sendRedirect("/login?result=error"); // 로그인화면으로 이동하면서 error 결과를 표시
     }
   }
 }

@@ -25,9 +25,9 @@ public enum TodoService {
   }
 
   public void register(TodoDTO dto) throws Exception {
-    // modelMapper를 이용해 dto를 vo로 변환
+    // modelMapper 를 이용해 dto 를 vo 로 변환
     TodoVO vo = modelMapper.map(dto, TodoVO.class);
-//    System.out.println("vo = " + vo); // log로 대체
+//    System.out.println("vo = " + vo); // log 로 대체
     log.info(vo);
     dao.insert(vo); // int 반환하므로 예외처리는 후에 진행
   }
