@@ -1,0 +1,23 @@
+## 세션을 이용한 로그인 체크 기능 구현
+  1) 사용자가 로그인에 성공하면 HttpSession 을 이용해 해당 사용자공간( session context )에 객체를 저장 ( name=value )
+  2) 로그인 체크가 필요한 컨트롤러( TodoRegisterController )에서는 세션 컨텍스트에 지정된 이름으로 객체가 저장되어있는지 확인
+    -> 로그인페이지로 이동 /w forward
+
+    로그인 사용자만 Todo 를 등록할 수 있도록
+
+    ++ WAS(Tomcat) 의 객체 scope
+      page - request, response - session - application
+
+      exception
+      out
+      config
+
+## 필터를 이용한 로그인 체크
+   로그인 여부를 체크해야하는 컨트롤러마다 같은 코드 작성을 안하기 위해 Servlet Filter 사용 /w @WebFilter
+   -> 특정 경로로 접근할 때 동작하도록 하여 로직 분리 (필터 체이닝)
+
+   ++ 한글 필터링
+      HttpServletRequest 의 데이터를 setCharacterEncoding 속성값을 UTF-8 로 셋팅
+
+## 데이터베이스에 회원정보를 구성 (테이블 생성 및 데이터 삽입)
+    -> Java 에서 객체로 처리하도록 VO / DAO 구현해야
