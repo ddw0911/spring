@@ -25,7 +25,7 @@ public enum MemberService {
       return modelMapper.map(vo, MemberDTO.class);
     } catch (Exception e) {
       log.error(e.getMessage());
-      throw new RuntimeException("invalid mid");
+      throw new RuntimeException("invalid member-info");
     }
   }
 }
