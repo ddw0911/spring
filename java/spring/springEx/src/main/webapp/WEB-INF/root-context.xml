@@ -2,9 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
   xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+https://www.springframework.org/schema/context/spring-context.xsd
+http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
   <context:component-scan base-package="com.ssg.springex"></context:component-scan>
+  <mybatis:scan base-package="com.ssg.springex.mapper"></mybatis:scan>
 <!--  hikari config 로 datasource 생성-->
   <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
@@ -26,5 +32,8 @@ http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springfr
 <!--  SqlSessionFactory 를 hikariCP 로 관리-->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"></property>
+    <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property>
   </bean>
+
+
 </beans>

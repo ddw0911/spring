@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c37f5ca5-d3e2-4791-ba5a-580d682812ef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../springEx/src/main/resources/todo.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ssg/todo/util/ModelMapperUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springEx/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../springEx/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springEx/src/main/java/com/ssg/springex/todo/util/ModelMapperUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springEx/src/main/java/com/ssg/springex/todo/util/ModelMapperUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springEx/src/main/webapp/WEB-INF/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springEx/src/main/webapp/WEB-INF/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssg/todo/domain/TodoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssg/todo/domain/TodoVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssg/todo/dto/TodoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssg/todo/dto/TodoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssg/todo/service/TodoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssg/todo/service/TodoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,6 +229,7 @@
       <workItem from="1725579778483" duration="5113000" />
       <workItem from="1725587810830" duration="7200000" />
       <workItem from="1725956889170" duration="1067000" />
+      <workItem from="1726012050377" duration="665000" />
     </task>
     <servers />
   </component>

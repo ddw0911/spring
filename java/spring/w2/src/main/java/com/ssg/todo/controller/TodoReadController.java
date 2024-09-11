@@ -40,6 +40,7 @@ public class TodoReadController extends HttpServlet {
       }
 
       log.info("exist:" + exist);
+
       if (!exist) {
         todoListStr += tno + "-";
         viewTodoCookie.setValue(todoListStr);

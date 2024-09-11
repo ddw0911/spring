@@ -1,0 +1,50 @@
+## 스프링과 톰캣이 연동되도록 구조 완성
+  - build.gradle
+  - hikariConfig 설정, hikariDataSource 초기화 in root-context.xml
+
+## MyBatis (Sql Mapping Framework) : sql 실행 결과를 객체지향으로 매핑
+     implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.27'
+     implementation group: 'org.springframework', name: 'spring-tx', version: '5.3.27'
+
+     // mybatis 라이브러리
+     implementation 'org.mybatis:mybatis:3.5.9'
+     implementation 'org.mybatis:mybatis-spring:2.0.7'
+
+     스프링 설정 - SqlSessionFactory 빌드 /w HikariDataSource in root-context.xml
+
+     sql 을 파일( xml ), 인터페이스, 어노테이션으로 처리가능
+       1) Mapper 인터페이스 ( root-context.xml 에 등록 )
+            -> 클래스, 객체 생성 없이 스프링이 자동생성 but 직접확인 불가
+
+       2) 파일 ( 권장하는 방법 /w xml )
+            -> 길어진 sql 은 어노테이션으로 처리하기 난해하기 때문
+
+       => xml 과 Mapper 인터페이스 결합
+          1. Mapper 인터페이스 정의 및 메서드 선언
+          2. xml 파일 작성 ( Mapper 인터페이스와 동일한 이름 )
+          3. <select/delete/update> 태그 id 속성값을 Mapper 인터페이스 메서드와 동일한 이름으로
+              <!--select 태그는 반드시 resultType or resultMap 속성을 지정해야-->
+
+              Mybatis 설정에 xml 파일을 인식하도록 설정
+              <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property>
+              ( resources 는 classpath: 접두어로 경로 인식  /  ** 는 폴더 밑에 폴더가 있어도 ok )
+
+## 스프링 Web MVC
+    스프링 프레임워크 - 개발의 생산성과 안정성
+      1. 상속, 인터페이스 구현 x - 어노테이션으로 대체
+      2. 오버라이드 없이 사용자 정의 메서드 사용
+
+    vs 기존 웹 MVC
+      스프링 웹 MVC 는 Front-Controller 패턴( facade 패턴 )을 이용해 모든 흐름의 사전/사후 처리를 가능하도록 설계 /w DispatcherServlet 객체
+                      어노테이션을 활용하여 최소한의 코드로 많은 처리를 가능하도록
+                      HttpServletRequest/Response 를 이용하지 않고 추상화된 방식으로 개발 가능
+                      ??facade pattern 모든흐름이 하나의 객체를 통해 진행
+
+    @RequestMapping @GetMapping @PostMapping @RequestParam
+      스프링 컨트롤러에서 가장 많이 사용 - 특정한 경로의 요청을 지정 @ Controller 선언부와 메서드에서 사용
+
+      4버전 이후 GetMapping,PostMapping 어노테이션이 추가 되면서 대체됨
+
+    Formatter 를 이용한 파라미터 커스텀 처리
+      Http 는 기본적으로 문자열로 데이터 전달
+      ex) 날짜 관련타입을 문자열로 변환하여 처리
