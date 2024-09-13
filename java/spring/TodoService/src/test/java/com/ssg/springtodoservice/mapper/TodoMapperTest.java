@@ -1,5 +1,7 @@
 package com.ssg.springtodoservice.mapper;
 
+import com.ssg.springtodoservice.domain.TodoVO;
+import java.util.List;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,5 +20,17 @@ class TodoMapperTest {
   @Test
   void testGetTime() {
     log.info(todoMapper.getTime());
+  }
+
+  @Test
+  void testSelectAll() {
+    List<TodoVO> voList = todoMapper.selectAll();
+    voList.forEach(vo->log.info(vo));
+  }
+
+  @Test
+  void testSelectOne() {
+    TodoVO vo = todoMapper.selectOne(3);
+    log.info(vo);
   }
 }

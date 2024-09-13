@@ -31,7 +31,7 @@ public class TodoReadController extends HttpServlet {
       TodoDTO dto = todoService.getDTO(tno);
       req.setAttribute("dto", dto);
       // 쿠키 찾기
-      Cookie viewTodoCookie = findCookie(req.getCookies(), "viewTodos");
+      Cookie viewTodoCookie = findCookie(req.getCookies(), "viewTodos"  );
       String todoListStr = viewTodoCookie.getValue();
       boolean exist = true;
 

@@ -18,7 +18,7 @@ public class TodoDTO {
   private long tno;
   @NotEmpty // 필수
   private String title;
-  @Future // 현재 이후 시점만
+  @Future // 미래 시점만
   private LocalDate dueDate;
   @NotEmpty
   private String writer;

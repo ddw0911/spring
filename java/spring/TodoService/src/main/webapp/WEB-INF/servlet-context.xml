@@ -26,6 +26,7 @@ https://www.springframework.org/schema/context/spring-context.xsd">
     <property name="formatters">
       <set>
         <bean class="com.ssg.springtodoservice.controller.formatter.LocalDateFormatter"></bean>
+        <bean class="com.ssg.springtodoservice.controller.formatter.CheckBoxFormatter"></bean>
       </set>
     </property>
   </bean>
