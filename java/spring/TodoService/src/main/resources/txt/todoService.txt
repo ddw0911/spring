@@ -2,3 +2,35 @@
 스프링, MyBatis, 스프링MVC 결합한 구조로 재구현
 
   - 서블릿 기반 Todo 웹 서비스 : CRUD 기능 개발 + 목록 페이징 + 검색 필터링
+
+## 페이징 처리를 위한 Mapper
+    많은 글을 한 페이지에서 불러올 때 문제 발생 가능 -> 최소한으로 처리함으로써 성능 향상
+    /w limit (MariaDB, MySQL only)
+        ex) select * from tbl_todo order by tno desc limit 10 - fetch : 10
+            select * from tbl_todo order by tno desc limit 10, 10 - 앞 10개 skip
+
+        but expression( 표현식 ) 불가 - 값만 허용
+        -> 직접 계산식을 만들어 사용해야
+
+    + 페이지 처리를 위한 PageRequestDTO - 필드 : 페이지번호 page, 한 페이지의 데이터 size
+
+    + count() 필요 - 페이지 구성을 위해 전체 데이터 갯수 계산 /w getCount()
+
+    + VO 목록과 전체 데이터수를 담을 PageResponseDTO - TodoDTO 목록, 전체데이터 수, 페이지 번호
+
+    페이지번호 계산
+        시작, 마지막 페이지 계산 수식 /w 올림
+        this.end = (int) Math.ceil(this.page / 10.0) * 10
+        this.start = this.end - 9
+
+    이전, 이후 페이지 여부 계산
+      이전 - 시작페이지가 1이 아니면 true
+      this.prev = this.start > 1;
+
+      이후 - 마지막페이지 * size 보다 전체 개수가 더 많은지 판단
+      this.next = total > this.end * this.size;
+
+## 검색기능 ( 필터링 )
+    필터링 : 완료여부, 제목, 작성자
+    필요한 변수는 PageRequestDTO 에 추가 - types keyword finished from to
+      -> types 에 따른 동적쿼리 /w Mybatis 태그 - trim, choose, foreach

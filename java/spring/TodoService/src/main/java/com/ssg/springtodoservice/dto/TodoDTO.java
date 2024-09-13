@@ -3,6 +3,7 @@ package com.ssg.springtodoservice.dto;
 
 import java.time.LocalDate;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ public class TodoDTO {
   private long tno;
   @NotEmpty // 필수
   private String title;
-  @Future // 미래 시점만
+  @FutureOrPresent // 현재와 이후 시점만
   private LocalDate dueDate;
   @NotEmpty
   private String writer;

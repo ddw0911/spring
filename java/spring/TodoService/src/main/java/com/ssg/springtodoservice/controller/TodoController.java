@@ -1,6 +1,8 @@
 package com.ssg.springtodoservice.controller;
 
 import com.ssg.springtodoservice.domain.TodoVO;
+import com.ssg.springtodoservice.dto.PageRequestDTO;
+import com.ssg.springtodoservice.dto.PageResponseDTO;
 import com.ssg.springtodoservice.dto.TodoDTO;
 import com.ssg.springtodoservice.service.TodoService;
 import java.net.http.HttpClient.Redirect;
@@ -23,14 +25,24 @@ public class TodoController {
 
   private final TodoService todoService;
 
-  @RequestMapping("/list")
-  public void list(Model model) {
-    log.info("list .....");
-    model.addAttribute("dtoList", todoService.getAll());
+//  @RequestMapping("/list")
+//  public void list(Model model) {
+//    log.info("list .....");
+////    model.addAttribute("dtoList", todoService.getAll());
+//
+//  }
+
+  @GetMapping("/list")
+  public void list(@Valid PageRequestDTO pageRequestDTO, BindingResult bindingResult, Model model) {
+    log.info(pageRequestDTO);
+    if(bindingResult.hasErrors()) {
+      pageRequestDTO = PageRequestDTO.builder().build();
+    }
+    model.addAttribute("pageResponseDTO", todoService.getList(pageRequestDTO));
   }
 
   @GetMapping({"/read", "/modify"}) // 여러 로직 처리가능하도록 배열처리
-  public void read(Model model, Long tno) {
+  public void read(Model model, Long tno, PageRequestDTO pageRequestDTO) {
     log.info("read .....");
     TodoDTO dto = todoService.getOne(tno);
     log.info(dto);
@@ -59,15 +71,17 @@ public class TodoController {
   }
 
   @PostMapping("/remove")
-  public String remove(Long tno, RedirectAttributes redirectAttributes) {
+  public String remove(Long tno, PageRequestDTO pageRequestDTO, RedirectAttributes redirectAttributes) {
     log.info("remove .....");
     log.info("tno = " + tno);
     todoService.remove(tno);
+    redirectAttributes.addAttribute("page", 1);
+    redirectAttributes.addAttribute("size", pageRequestDTO.getSize());
     return "redirect:/todo/list";
   }
 
   @PostMapping("/modify")
-  public String modify(@Valid TodoDTO dto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+  public String modify(@Valid TodoDTO dto, PageRequestDTO pageRequestDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
     log.info("modify .....");
 
     if(bindingResult.hasErrors()) {
@@ -79,7 +93,8 @@ public class TodoController {
 
     log.info(dto);
     todoService.modify(dto);
-
+    redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
+    redirectAttributes.addAttribute("size", pageRequestDTO.getSize());
     return "redirect:/todo/list";
   }
 }

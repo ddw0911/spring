@@ -1,5 +1,7 @@
 package com.ssg.springtodoservice.service;
 
+import com.ssg.springtodoservice.dto.PageRequestDTO;
+import com.ssg.springtodoservice.dto.PageResponseDTO;
 import com.ssg.springtodoservice.dto.TodoDTO;
 import com.ssg.springtodoservice.mapper.TodoMapper;
 import java.time.LocalDate;
@@ -27,5 +29,18 @@ class TodoServiceTest {
         .build();
 
     todoService.register(todoDTO);
+  }
+
+  @Test
+  void testPaging() {
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+        .page(1)
+        .size(10)
+        .build();
+
+    PageResponseDTO<TodoDTO> pageResponseDTO = todoService.getList(pageRequestDTO);
+    log.info(pageResponseDTO);
+
+//    pageResponseDTO.getDtoList().forEach(todoDTO->log.info(todoDTO));
   }
 }

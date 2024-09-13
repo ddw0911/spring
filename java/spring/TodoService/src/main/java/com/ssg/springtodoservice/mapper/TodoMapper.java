@@ -1,6 +1,7 @@
 package com.ssg.springtodoservice.mapper;
 
 import com.ssg.springtodoservice.domain.TodoVO;
+import com.ssg.springtodoservice.dto.PageRequestDTO;
 import java.util.List;
 
 public interface TodoMapper {
@@ -16,4 +17,8 @@ public interface TodoMapper {
   void delete(long tno);
 
   void update(TodoVO vo);
+
+  List<TodoVO> selectList(PageRequestDTO page);
+
+  int getCount(PageRequestDTO page);
 }
