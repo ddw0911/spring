@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello</title>
+</head>
+<body>
+  <h1 th:text="${msg}"></h1>
+  <div th:with="num1=10, num2=20"></div>
+  <h1 th:text="${num1 + num2}"></h1>
+</body>
+</html>
